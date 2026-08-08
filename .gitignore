@@ -1,0 +1,7 @@
+.env
+venv/
+__pycache__/
+*.pyc
+examples/generated_model.sql
+examples/write_back_log.json
+run_log.txt

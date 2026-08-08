@@ -1,0 +1,38 @@
+{
+  "tables": {
+    "raw.customers": {
+      "description": "One row per signed-up customer.",
+      "owner": "growth-team",
+      "columns": [
+        {"name": "customer_id", "type": "STRING", "is_primary_key": true},
+        {"name": "email", "type": "STRING"},
+        {"name": "signup_date", "type": "DATE"},
+        {"name": "country", "type": "STRING"}
+      ],
+      "downstream": ["analytics.customer_churn"]
+    },
+    "raw.support_tickets": {
+      "description": "One row per customer support ticket.",
+      "owner": "support-team",
+      "columns": [
+        {"name": "ticket_id", "type": "STRING", "is_primary_key": true},
+        {"name": "customer_id", "type": "STRING"},
+        {"name": "opened_at", "type": "TIMESTAMP"},
+        {"name": "resolved_at", "type": "TIMESTAMP"},
+        {"name": "category", "type": "STRING"},
+        {"name": "satisfaction_score", "type": "INT"}
+      ],
+      "downstream": ["analytics.customer_churn"]
+    },
+    "analytics.customer_churn": {
+      "description": "Model output: churn risk score per customer, refreshed nightly.",
+      "owner": "data-science-team",
+      "columns": [
+        {"name": "customer_id", "type": "STRING", "is_primary_key": true},
+        {"name": "churn_risk_score", "type": "FLOAT"},
+        {"name": "last_scored_at", "type": "TIMESTAMP"}
+      ],
+      "upstream": ["raw.customers", "raw.support_tickets"]
+    }
+  }
+}
