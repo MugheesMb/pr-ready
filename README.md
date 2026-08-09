@@ -115,6 +115,23 @@ with a `models/` folder). Generate a
 `GITHUB_TOKEN` and `GITHUB_REPO=yourname/your-repo` in `.env`. Now
 `pr_writer` opens a real pull request instead of just saving a local file.
 
+
+## Example requests to try
+
+The demo data is DataHub's built-in `showcase-ecommerce` sample pack — an
+order-entry system with customers, orders, order_items, products,
+product_categories, warehouses, and promotions. These requests are
+confirmed to work end-to-end against that real data (each one opens a
+genuinely new PR — branches are timestamped, so run any of these as many
+times as you like):
+
+- `summarize order_items revenue by product category`
+- `summarize the orders table: total order value and average delivery cost, grouped by delivery type`
+- `total orders and average order value by order status`
+- `join orders to warehouses to see order volume by warehouse`
+- `join orders to promotions to see how many orders used a promotion`
+
+
 ## Project structure
 ```
 pr-ready/
