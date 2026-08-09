@@ -1,0 +1,30 @@
+SELECT
+    c.customer_id,
+    c.cust_first_name,
+    c.cust_last_name,
+    c.cust_email,
+    c.phone_number,
+    c.account_mgr_id,
+    c.address_line1,
+    c.address_line2,
+    c.address_line3,
+    c.country_id,
+    c.region_id,
+    c.town_city,
+    c.zipcode,
+    c.customer_class,
+    c.customer_since,
+    c.credit_limit,
+    c.dob,
+    c.nls_language,
+    c.nls_territory,
+    c.mailshot,
+    c.partner_mailshot,
+    c.suggestions,
+    oh.as_of_date,
+    oh.order_id,
+    oh.order_status,
+    oh.order_total
+FROM order_entry_db.order_entry.customers AS c
+LEFT JOIN order_entry_db.analytics.order_history AS oh
+    ON c.customer_id = oh.customer_id;
